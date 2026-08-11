@@ -1,7 +1,7 @@
-# @mfe-orchestrator/client-angular
+# @mfe-orchestrator-hub/client-angular
 
 Angular bindings for
-[`@mfe-orchestrator/client`](https://github.com/mfe-orchestrator/client-core).
+[`@mfe-orchestrator-hub/client`](https://github.com/mfe-orchestrator/client-core).
 
 Ergonomics only. Every decision — which version is served, how the manifest is fetched, how the
 identities are kept — lives in the core. This package is one provider function and one service.
@@ -9,17 +9,17 @@ identities are kept — lives in the core. This package is one provider function
 ## Install
 
 ```sh
-pnpm add @mfe-orchestrator/client-angular
+pnpm add @mfe-orchestrator-hub/client-angular
 ```
 
-`@mfe-orchestrator/client` comes along as a dependency. `@angular/core` is a peer dependency
+`@mfe-orchestrator-hub/client` comes along as a dependency. `@angular/core` is a peer dependency
 (16 or later).
 
 ## Usage
 
 ```ts
 import { bootstrapApplication } from "@angular/platform-browser"
-import { provideOrchestrator } from "@mfe-orchestrator/client-angular"
+import { provideOrchestrator } from "@mfe-orchestrator-hub/client-angular"
 import { AppComponent } from "./app.component"
 
 bootstrapApplication(AppComponent, {
@@ -41,7 +41,7 @@ It stays a convenience. The recommended place is still the very top of `main.ts`
 `bootstrapApplication`, because a bundler may import a remote before Angular boots:
 
 ```ts
-import { configure } from "@mfe-orchestrator/client"
+import { configure } from "@mfe-orchestrator-hub/client"
 
 configure({ backendUrl: "…", projectId: "…", environment: "…" })
 ```
@@ -50,7 +50,7 @@ configure({ backendUrl: "…", projectId: "…", environment: "…" })
 
 ```ts
 import { Component, inject } from "@angular/core"
-import { OrchestratorService } from "@mfe-orchestrator/client-angular"
+import { OrchestratorService } from "@mfe-orchestrator-hub/client-angular"
 
 @Component({ selector: "app-checkout", template: "<p>{{ url }}</p>" })
 export class CheckoutComponent {
