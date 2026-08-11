@@ -1,10 +1,10 @@
 import { type EnvironmentProviders, makeEnvironmentProviders } from "@angular/core"
-import { configure, globalVariables, type Identities, identities, type Manifest, manifest, type OrchestratorConfig, remoteUrl } from "@mfe-orchestrator-hub/client"
+import { configure, globalVariables, type Identities, identities, type Manifest, manifest, type OrchestratorConfig, remoteUrl } from "@mfe-orchestrator/client"
 
-export type { GlobalVariable, Identities, Manifest, Microfrontend, OrchestratorConfig } from "@mfe-orchestrator-hub/client"
+export type { GlobalVariable, Identities, Manifest, Microfrontend, OrchestratorConfig } from "@mfe-orchestrator/client"
 
 /**
- * Injectable façade over `@mfe-orchestrator-hub/client`. Every method forwards to the core, which owns
+ * Injectable façade over `@mfe-orchestrator/client`. Every method forwards to the core, which owns
  * the single memoized manifest request, so injecting the service in ten components still costs one
  * network call.
  *
