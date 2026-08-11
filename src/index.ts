@@ -42,9 +42,13 @@ export class OrchestratorService {
  *
  * ```ts
  * bootstrapApplication(AppComponent, {
- *     providers: [provideOrchestrator({ backendUrl: "…", projectId: "…", environment: "…" })]
+ *     providers: [provideOrchestrator({ backendUrl: "…", projectId: "…" })]
  * })
  * ```
+ *
+ * `environment` is optional. Omit it and the backend resolves the environment from the domain the
+ * page is served on; pass it whenever the app already knows which environment it belongs to, or when
+ * one domain serves several of them.
  */
 export const provideOrchestrator = (config: OrchestratorConfig): EnvironmentProviders => {
     configure(config)

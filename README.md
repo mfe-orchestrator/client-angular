@@ -26,8 +26,7 @@ bootstrapApplication(AppComponent, {
     providers: [
         provideOrchestrator({
             backendUrl: environment.mfeBackendUrl,
-            projectId: environment.mfeProjectId,
-            environment: environment.mfeEnvironment
+            projectId: environment.mfeProjectId
         })
     ]
 })
@@ -43,8 +42,27 @@ It stays a convenience. The recommended place is still the very top of `main.ts`
 ```ts
 import { configure } from "@mfe-orchestrator-hub/client"
 
-configure({ backendUrl: "…", projectId: "…", environment: "…" })
+configure({ backendUrl: "…", projectId: "…" })
 ```
+
+### Environment
+
+`environment` is optional. Left out, the backend resolves it from the domain the page is served on,
+matching it against the domains declared for each environment in the console — one Angular build then
+serves staging and production without an environment specific `environment.ts`:
+
+```ts
+provideOrchestrator({ backendUrl: "…", projectId: "…" })
+```
+
+Pass it explicitly whenever the app already knows which environment it belongs to, or when a single
+domain serves several of them:
+
+```ts
+provideOrchestrator({ backendUrl: "…", projectId: "…", environment: "production" })
+```
+
+Either way the decision lives in the core: this package hands the configuration over untouched.
 
 ### `OrchestratorService`
 
