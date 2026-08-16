@@ -1,6 +1,6 @@
 {
     "name": "@mfe-orchestrator-hub/client-angular",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "Angular bindings for @mfe-orchestrator-hub/client: provideOrchestrator and OrchestratorService over the MFE Orchestrator client",
     "license": "MIT",
     "author": "Lorenzo De Francesco",
@@ -58,7 +58,7 @@
         "prepublishOnly": "pnpm build"
     },
     "dependencies": {
-        "@mfe-orchestrator-hub/client": "^0.1.2"
+        "@mfe-orchestrator-hub/client": "^0.2.0"
     },
     "peerDependencies": {
         "@angular/core": ">=16.0.0"
