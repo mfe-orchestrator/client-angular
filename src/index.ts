@@ -48,6 +48,29 @@ export class OrchestratorService {
     identities(): Identities {
         return identities()
     }
+
+    /**
+     * Replaces the logged in user, so a *User* canary is decided on the new one from the next
+     * resolution on. Pass `undefined` on logout. It drops the memoized manifest of the core, which a
+     * second `configure()` deliberately does not.
+     *
+     * Remotes already imported keep the version drawn for the previous user: the federation runtime
+     * holds the container it loaded. Load your remotes behind your own route guard, or reload after
+     * the switch.
+     *
+     * Guarded like `registerIntegration`: a host still on a core that predates this call gets a
+     * warning naming the upgrade, not a crash on a property that resolves to undefined.
+     */
+    setUserId(userId: OrchestratorConfig["userId"]): void {
+        const call = (orchestrator as unknown as { setUserId?: (value: OrchestratorConfig["userId"]) => void }).setUserId
+        if (!call) {
+            console.warn(
+                "[@mfe-orchestrator-hub/client-angular] setUserId() is not available in the installed @mfe-orchestrator-hub/client, so the user was not changed and the canary still sees the previous one. Upgrade that package."
+            )
+            return
+        }
+        call(userId)
+    }
 }
 
 /**

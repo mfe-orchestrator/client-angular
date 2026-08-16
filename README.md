@@ -91,6 +91,8 @@ class OrchestratorService {
     globalVariables(): Promise<Record<string, string>>
     /** The session and device ids of this page. */
     identities(): { sessionId: string; deviceId: string }
+    /** Replaces the logged in user and drops the memoized manifest. `undefined` on logout. */
+    setUserId(userId: OrchestratorConfig["userId"]): void
 }
 ```
 
@@ -103,6 +105,23 @@ it and never strip the `_v/<version>/` segment.
 `OrchestratorService` is registered by `provideOrchestrator()`. It is not `providedIn: "root"`, so
 `provideOrchestrator()` must be in the application providers for `inject(OrchestratorService)` to
 resolve.
+
+### Changing the logged-in user
+
+The user is what a *User* canary is decided on, and it is the one thing that changes while the page is
+alive. A second `provideOrchestrator()` is ignored on purpose, so the service carries the setter:
+
+```ts
+this.orchestrator.setUserId(user.id)
+this.orchestrator.setUserId(undefined) // on logout: back to the stable version
+```
+
+It drops the memoized manifest, so the next `remoteUrl()` is answered for the new user. Remotes
+**already loaded** keep the version drawn for the previous one — the federation runtime holds the
+container it loaded — so load them behind your own route guard, or reload the page after the switch.
+
+Needs a `@mfe-orchestrator-hub/client` that exposes `setUserId()`. On an older core the call warns and
+does nothing rather than crashing.
 
 ### No Angular compiler
 
