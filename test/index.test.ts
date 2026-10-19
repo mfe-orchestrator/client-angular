@@ -10,7 +10,7 @@ const createCore = (overrides: Record<string, unknown> = {}) => ({
     configure: vi.fn(),
     registerIntegration: vi.fn(),
     remoteUrl: vi.fn(async () => "https://console.test/serve/mfe/files/auto/p1/checkout/_v/1.0.0/assets/remoteEntry.js"),
-    manifest: vi.fn(async () => ({ globalVariables: [], microfrontends: [] })),
+    manifest: vi.fn(async () => ({ globalVariables: [], frontends: [] })),
     globalVariables: vi.fn(async () => ({})),
     identities: vi.fn(() => ({ sessionId: "s", deviceId: "d" })),
     setUserId: vi.fn(),

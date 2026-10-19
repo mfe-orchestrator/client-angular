@@ -2,7 +2,7 @@ import { type EnvironmentProviders, makeEnvironmentProviders } from "@angular/co
 import * as orchestrator from "@mfe-orchestrator-hub/client"
 import { configure, globalVariables, type Identities, identities, type Manifest, manifest, type OrchestratorConfig, remoteUrl } from "@mfe-orchestrator-hub/client"
 
-export type { GlobalVariable, Identities, Manifest, Microfrontend, OrchestratorConfig } from "@mfe-orchestrator-hub/client"
+export type { Frontend, GlobalVariable, Identities, Manifest, OrchestratorConfig } from "@mfe-orchestrator-hub/client"
 
 /**
  * Tells the core that the host configures the client through this package, so a missing or invalid
